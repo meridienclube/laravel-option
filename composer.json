@@ -1,0 +1,32 @@
+{
+    "name": "confrariaweb/laravel-option",
+    "description": "Pacote de options para laravel",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Rafael Zingano",
+            "email": "confrariaweb@gmail.com"
+        }
+    ],
+    "require": {
+        "confrariaweb/laravel-vendor": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "ConfrariaWeb\\Option\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ConfrariaWeb\\Option\\Providers\\OptionServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
