@@ -1,21 +1,18 @@
 <?php
 
-namespace App\Traits;
-
-use App\Optiongable;
+namespace ConfrariaWeb\Option\Traits;
 
 trait OptionTrait
 {
 
     public function options()
     {
-        return $this->belongsToMany('App\Option');
+        return $this->belongsToMany('ConfrariaWeb\Option\Model\Option');
     }
 
     public function optionsValues()
     {
-        return $this->morphToMany('App\Option', 'optiongable')
-            ->using(Optiongable::class)
+        return $this->morphToMany('ConfrariaWeb\Option\Models\Option', 'optiongable')
             ->withPivot('content')
             ->withTimestamps();
     }
