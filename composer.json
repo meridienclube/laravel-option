@@ -17,6 +17,10 @@
         "confrariaweb/laravel-vendor": "dev-master"
     },
     "autoload": {
+        "files": [
+            "src/Helpers/option.php",
+            "src/Helpers/option_input.php"
+        ],
         "psr-4": {
             "ConfrariaWeb\\Option\\": "src"
         }
