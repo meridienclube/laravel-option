@@ -42,7 +42,8 @@
         {{ __('option::options.value') }}
         <span class="required"> * </span>
     </label>
-    {!! Form::text('value', isset($option)? $option->value : null, ['class' => 'form-control', 'placeholder' => __('option::options.value')]) !!}
+
+    {!! Form::text('value', isset($option)? $option->value->implode(',') : null, ['class' => 'form-control', 'placeholder' => __('option::options.value')]) !!}
 </div>
 
 <div class="form-group">
@@ -50,7 +51,7 @@
         {{ __('option::options.required') }}
         <span class=""> *</span>
     </label>
-    {{ Form::select('required', [0 => __('No'), 1 => __('Yes')], isset($option)? $option->required : null, ['class' => 'form-control']) }}
+    {{ Form::select('required', [0 => __('option::options.no'), 1 => __('option::options.yes')], isset($option)? $option->required : null, ['class' => 'form-control']) }}
 </div>
 
 <div class="form-group">

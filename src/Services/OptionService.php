@@ -14,6 +14,14 @@ class OptionService
         $this->obj = $option;
     }
 
+    public function prepareData(array $data)
+    {
+        if(isset($data['value'])){
+            $data['value'] = collect(explode(',', $data['value']));
+        }
+        return $data;
+    }
+
     /**
      * Aqui formatamos os options para serem salvos na tabela de relacionamento "optiongables"
      * Somente são enviados options que estejam cadastrados no sistema

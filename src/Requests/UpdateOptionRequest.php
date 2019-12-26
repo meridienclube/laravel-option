@@ -3,6 +3,8 @@
 namespace ConfrariaWeb\Option\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 class UpdateOptionRequest extends FormRequest
 {
@@ -21,10 +23,14 @@ class UpdateOptionRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'name' => 'required|unique:ConfrariaWeb\Option\Models\Option,name|max:255',
+            'name' => [
+                'required',
+                'max:255',
+                Rule::unique('options', 'name')->ignore(explode('/', $request->requestUri)[3], 'id')
+            ],
         ];
     }
 
