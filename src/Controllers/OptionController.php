@@ -2,7 +2,10 @@
 
 namespace ConfrariaWeb\Option\Controllers;
 
+use ConfrariaWeb\Option\Requests\StoreOptionRequest;
+use ConfrariaWeb\Option\Requests\UpdateOptionRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class OptionController extends Controller
 {
@@ -24,41 +27,41 @@ class OptionController extends Controller
     public function index()
     {
         $this->data['options'] = resolve('OptionService')->all();
-        return view(config('cw_option.views') . 'index', $this->data);
+        return view(config('cw_option.views') . 'options.index', $this->data);
     }
 
     public function create()
     {
         $this->data['groups'] = resolve('OptionGroupService')->pluck();
-        return view(config('cw_option.views') . 'create', $this->data);
+        return view(config('cw_option.views') . 'options.create', $this->data);
     }
 
-    public function store(Request $request)
+    public function store(StoreOptionRequest $request)
     {
         $option = resolve('OptionService')->create($request->all());
         return redirect()
-            ->route('options.edit', $option->id)
+            ->route('admin.options.edit', $option->id)
             ->with('status', 'Opção criada com sucesso!');
     }
 
     public function show($id)
     {
         $this->data['option'] = resolve('OptionService')->find($id);
-        return view(config('cw_option.views') . 'show', $this->data);
+        return view(config('cw_option.views') . 'options.show', $this->data);
     }
 
     public function edit($id)
     {
         $this->data['groups'] = resolve('OptionGroupService')->pluck();
         $this->data['option'] = resolve('OptionService')->find($id);
-        return view(config('cw_option.views') . 'edit', $this->data);
+        return view(config('cw_option.views') . 'options.edit', $this->data);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateOptionRequest $request, $id)
     {
         $option = resolve('OptionService')->update($request->all(), $id);
         return redirect()
-            ->route('options.edit', $option->id)
+            ->route('admin.options.edit', $option->id)
             ->with('status', 'Opção editada com sucesso!');
     }
 
@@ -66,7 +69,7 @@ class OptionController extends Controller
     {
         $option = resolve('OptionService')->destroy($id);
         return redirect()
-            ->route('options.index')
+            ->route('admin.options.index')
             ->with('status', 'Opção deletado com sucesso!');
     }
 }

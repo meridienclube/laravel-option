@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace ConfrariaWeb\Option\Services;
 
-use App\Repositories\Contracts\OptionContract;
-use App\Traits\ServiceTrait;
+use ConfrariaWeb\Option\Contracts\OptionContract;
+use ConfrariaWeb\Vendor\Traits\ServiceTrait;
 
 class OptionService
 {

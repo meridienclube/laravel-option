@@ -20,14 +20,14 @@ class Option extends Model
         'required',
         'order'
     ];
-    
+
     protected $casts = [
         'value' => 'collection'
     ];
 
     public function group()
     {
-        return $this->belongsTo('App\OptionGroup', 'group_id');
+        return $this->belongsTo('ConfrariaWeb\Option\Models\OptionGroup', 'group_id');
     }
 
 }

@@ -26,7 +26,7 @@ class CreateOptionsTable extends Migration
             $table->string('name')->unique();
             $table->string('type')->default('text');
             $table->string('placeholder');
-            $table->string('value')->nullable();
+            $table->json('value')->nullable();
             $table->boolean('required')->default(false);
             $table->integer('order')->default(1);
             $table->timestamps();

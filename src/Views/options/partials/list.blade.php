@@ -1,14 +1,14 @@
 <table class="table table-striped" id="options_datatable">
     <thead>
     <tr>
-        <th>{{ __('options.group') }}</th>
-        <th>{{ __('options.label') }}</th>
-        <th>{{ __('options.name') }}</th>
-        <th>{{ __('options.type') }}</th>
-        <th>{{ __('options.placeholder') }}</th>
-        <th>{{ __('options.value') }}</th>
-        <th>{{ __('options.required') }}</th>
-        <th>{{ __('options.order') }}</th>
+        <th>{{ __('option::options.group') }}</th>
+        <th>{{ __('option::options.label') }}</th>
+        <th>{{ __('option::options.name') }}</th>
+        <th>{{ __('option::options.type') }}</th>
+        <th>{{ __('option::options.placeholder') }}</th>
+        <th>{{ __('option::options.value') }}</th>
+        <th>{{ __('option::options.required') }}</th>
+        <th>{{ __('option::options.order') }}</th>
         <th></th>
     </tr>
     </thead>
@@ -25,9 +25,7 @@
             <td>{{ $option->order }}</td>
             <td>
                 @if (Route::current()->getName() != 'options.trashed')
-                    @datatableActions(['obj' => $option, 'slug' => 'options'])
-                    Botões de options
-                    @enddatatableActions
+                    @include('vendor::partials.buttons_datatable', ['obj' => $option, 'nameRoute' => 'admin.options'])
                 @else
                     Deletado em @datetime($option->deleted_at)
                 @endif
