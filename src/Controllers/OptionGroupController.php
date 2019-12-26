@@ -27,13 +27,13 @@ class OptionGroupController extends Controller
     public function index()
     {
         $this->data['groups'] = resolve('OptionGroupService')->all();
-        return view(config('cw_option.views') . 'groups.index', $this->data);
+        return view(config('cw_option.views') . 'options_groups.index', $this->data);
     }
 
     public function create()
     {
         $this->data['groups'] = resolve('OptionGroupService')->pluck();
-        return view(config('cw_option.views') . 'groups.create', $this->data);
+        return view(config('cw_option.views') . 'options_groups.create', $this->data);
     }
 
     public function store(StoreOptionGroupRequest $request)
@@ -47,13 +47,13 @@ class OptionGroupController extends Controller
     public function show($id)
     {
         $this->data['option'] = resolve('OptionGroupService')->find($id);
-        return view(config('cw_option.views') . 'groups.show', $this->data);
+        return view(config('cw_option.views') . 'options_groups.show', $this->data);
     }
 
     public function edit($id)
     {
         $this->data['group'] = resolve('OptionGroupService')->find($id);
-        return view(config('cw_option.views') . 'groups.edit', $this->data);
+        return view(config('cw_option.views') . 'options_groups.edit', $this->data);
     }
 
     public function update(UpdateOptionGroupRequest $request, $id)
