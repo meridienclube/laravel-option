@@ -7,7 +7,7 @@ trait OptionTrait
 
     public function options()
     {
-        return $this->belongsToMany('ConfrariaWeb\Option\Model\Option');
+        return $this->belongsToMany('ConfrariaWeb\Option\Models\Option');
     }
 
     public function optionsValues()
