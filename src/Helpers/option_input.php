@@ -16,7 +16,8 @@ if (!function_exists('option_input')) {
     {
         $inputName = (isset($config['name']) && !empty($config)) ? $config['name'] . '[' . $option->name . ']' : 'sync[optionsValues][' . $option->name . ']';
         $optionConfig = $option->config;
-        $models = config('erp.options.models');
+        $models = config('cw_option.models');
+
         $inlineGroup = $inline ? 'row' : '';
         $inlineLabel = $inline ? 'col-xl-3 col-lg-3 col-form-label' : 'form-label';
         $inlineInput = $inline ? '' : '';
@@ -89,10 +90,10 @@ if (!function_exists('option_star')) {
             $checked = ($starValue >= $value && $starValue <= $value) ? 'checked' : '';
 
             $star .= '<label>
-                <input type="radio" 
-                        class="cm_star" 
-                        name="' . $name . '" 
-                        value="' . $starValue . '" 
+                <input type="radio"
+                        class="cm_star"
+                        name="' . $name . '"
+                        value="' . $starValue . '"
                         ' . $checked . '/>
                 <i class="fa"></i>
             </label>';
