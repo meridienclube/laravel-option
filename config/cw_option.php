@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'layout' => env('CW_LAYOUT', 'meridien::layouts.app'),
-    'views' => env('CW_VIEWS', 'option::'),
+    'layout' => env('CW_ADMIN_LAYOUT', 'layouts.app'),
+    'views' => env('CW_ADMIN_VIEWS', ''),
     'types' => [
         "text" => "Texto",
         "checkbox" => "Checkbox",

@@ -4,7 +4,6 @@ namespace ConfrariaWeb\Option\Controllers;
 
 use ConfrariaWeb\Option\Requests\StoreOptionRequest;
 use ConfrariaWeb\Option\Requests\UpdateOptionRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class OptionController extends Controller

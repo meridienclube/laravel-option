@@ -3,8 +3,7 @@
 namespace ConfrariaWeb\Option\Controllers;
 
 use ConfrariaWeb\Option\Requests\StoreOptionGroupRequest;
-use ConfrariaWeb\option\Requests\UpdateOptionGroupRequest;
-use Illuminate\Http\Request;
+use ConfrariaWeb\Option\Requests\UpdateOptionGroupRequest;
 use App\Http\Controllers\Controller;
 
 class OptionGroupController extends Controller
@@ -21,19 +20,19 @@ class OptionGroupController extends Controller
     public function trashed()
     {
         $this->data['options'] = resolve('OptionService')->trashed();
-        return view(config('cw_option.views') . 'options_groups.index', $this->data);
+        return view(config('cw_option.views') . 'options.groups.index', $this->data);
     }
 
     public function index()
     {
         $this->data['groups'] = resolve('OptionGroupService')->all();
-        return view(config('cw_option.views') . 'options_groups.index', $this->data);
+        return view(config('cw_option.views') . 'options.groups.index', $this->data);
     }
 
     public function create()
     {
         $this->data['groups'] = resolve('OptionGroupService')->pluck();
-        return view(config('cw_option.views') . 'options_groups.create', $this->data);
+        return view(config('cw_option.views') . 'options.groups.create', $this->data);
     }
 
     public function store(StoreOptionGroupRequest $request)
@@ -47,13 +46,13 @@ class OptionGroupController extends Controller
     public function show($id)
     {
         $this->data['option'] = resolve('OptionGroupService')->find($id);
-        return view(config('cw_option.views') . 'options_groups.show', $this->data);
+        return view(config('cw_option.views') . 'options.groups.show', $this->data);
     }
 
     public function edit($id)
     {
         $this->data['group'] = resolve('OptionGroupService')->find($id);
-        return view(config('cw_option.views') . 'options_groups.edit', $this->data);
+        return view(config('cw_option.views') . 'options.groups.edit', $this->data);
     }
 
     public function update(UpdateOptionGroupRequest $request, $id)

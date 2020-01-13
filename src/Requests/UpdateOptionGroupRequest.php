@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\option\Requests;
+namespace ConfrariaWeb\Option\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
