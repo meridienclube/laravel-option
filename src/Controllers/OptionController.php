@@ -20,7 +20,7 @@ class OptionController extends Controller
     public function trashed()
     {
         $this->data['options'] = resolve('OptionService')->trashed();
-        return view(config('cw_option.views') . 'index', $this->data);
+        return view(config('cw_option.views') . 'options.index', $this->data);
     }
 
     public function index()
