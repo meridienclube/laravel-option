@@ -39,7 +39,7 @@ if (!function_exists('option_input')) {
                     $list = $user->pluck('name', 'id')->prepend('Selecione uma opção...', '');
                 }
                 if (empty($optionConfig['filters']['where'])) {
-                    $list = $serviceObject->pluck()->prepend('Selecione uma opção...', '');
+                    $list = $serviceObject->pluck()->prepend('Selecione uma opção...', NULL);
                 }
             } catch (Exception $e) {
                 dd(new \App\Services\UserService());
