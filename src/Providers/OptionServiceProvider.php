@@ -19,7 +19,7 @@ class OptionServiceProvider extends ServiceProvider
         //$this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
         $this->loadMigrationsFrom(__DIR__ . '/../Databases/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'option');
-        $this->loadViewsFrom(__DIR__ . '/../Views', 'option');
+        //$this->loadViewsFrom(__DIR__ . '/../Views', 'option');
         $this->publishes([__DIR__ . '/../../config/cw_option.php' => config_path('cw_option.php')], 'cw_option');
     }
 
