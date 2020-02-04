@@ -36,10 +36,10 @@ if (!function_exists('option_input')) {
                 $serviceObject = resolve($service . 'Service');
                 if (!empty($optionConfig['filters']['where'])) {
                     $user = $serviceObject->where($optionConfig['filters']['where']);
-                    $list = $user->pluck('name', 'id')->prepend('Selecione uma opção...', '');
+                    $list = $user->pluck('name', 'id');
                 }
                 if (empty($optionConfig['filters']['where'])) {
-                    $list = $serviceObject->pluck()->prepend('Selecione uma opção...', NULL);
+                    $list = $serviceObject->pluck();
                 }
             } catch (Exception $e) {
                 dd(new \App\Services\UserService());

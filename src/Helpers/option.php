@@ -8,6 +8,7 @@ if (!function_exists('option')) {
         if (is_object($obj)) {
             if ($obj->optionsValues) {
                 $optionsValues = $obj->optionsValues->where('name', $option)->first();
+
                 if ($optionsValues) {
                     if (in_array($optionsValues->type, $models)) {
                         $service = Str::before($optionsValues->type, '::multiple');
