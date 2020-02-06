@@ -1,5 +1,6 @@
 {
     "name": "confrariaweb/laravel-option",
+    "version": "dev-master",
     "description": "Pacote de options para laravel",
     "keywords": [
         "framework",
