@@ -38,9 +38,16 @@ if (!function_exists('option_input')) {
                     $user = $serviceObject->where($optionConfig['filters']['where']);
                     $list = $user->pluck('name', 'id');
                 }
+
+                if('User' == $service && auth()->user()->roles->contains(6)){
+                    $user = $serviceObject->where(['roles' => [6]]);
+                    $list = $user->pluck('name', 'id');
+                }else
                 if (empty($optionConfig['filters']['where'])) {
                     $list = $serviceObject->pluck();
                 }
+
+
             } catch (Exception $e) {
                 dd(new \App\Services\UserService());
             }

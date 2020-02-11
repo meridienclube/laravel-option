@@ -6,11 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateOptionsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('option_groups', function (Blueprint $table) {
@@ -38,9 +34,6 @@ class CreateOptionsTable extends Migration
                 ->onDelete('cascade');
         });
 
-        /**
-         * tabela para capturar os valores dos options  e seus objetos
-         */
         Schema::create('optiongables', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('option_id');
@@ -55,11 +48,6 @@ class CreateOptionsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('optiongables');
