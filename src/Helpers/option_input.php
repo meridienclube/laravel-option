@@ -44,12 +44,14 @@ if (!function_exists('option_input')) {
                     $list = $user->pluck('name', 'id');
                 }else
                 if (empty($optionConfig['filters']['where'])) {
-                    $list = $serviceObject->pluck();
+                    //$list = $serviceObject->pluck();
+                    $user = $serviceObject->where(['roles' => [6]]);
+                    $list = $user->pluck('name', 'id');
                 }
 
 
             } catch (Exception $e) {
-                dd(new \App\Services\UserService());
+                dd($e->getMessage());
             }
                 $view .= Form::select($inputName, $list, option(isset($obj) ? $obj : null, $option->name, NULL), ['multiple' => $isMultiple, 'class' => 'form-control kt-select2']);
 
