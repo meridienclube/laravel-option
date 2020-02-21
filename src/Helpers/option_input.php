@@ -14,6 +14,7 @@ if (!function_exists('option_input')) {
 
     function option_input($obj, $option, $inline = false, $config = [], $view = null)
     {
+
         $inputName = (isset($config['name']) && !empty($config)) ? $config['name'] . '[' . $option->name . ']' : 'sync[optionsValues][' . $option->name . ']';
         $optionConfig = $option->config;
         $models = config('cw_option.models');
@@ -51,8 +52,9 @@ if (!function_exists('option_input')) {
 
 
             } catch (Exception $e) {
-                dd($e->getMessage());
+                //dd($e->getMessage());
             }
+
                 $view .= Form::select($inputName, $list, option(isset($obj) ? $obj : null, $option->name, NULL), ['multiple' => $isMultiple, 'class' => 'form-control kt-select2']);
 
         } else if ($option->type == 'checkbox') {
