@@ -2,6 +2,8 @@
 
 namespace ConfrariaWeb\Option\Providers;
 
+use Collective\Html\FormFacade as Form;
+
 use ConfrariaWeb\Option\Contracts\OptionGroupContract;
 use ConfrariaWeb\Option\Repositories\OptionGroupRepository;
 use ConfrariaWeb\Option\Services\OptionGroupService;
@@ -19,8 +21,10 @@ class OptionServiceProvider extends ServiceProvider
         //$this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
         $this->loadMigrationsFrom(__DIR__ . '/../Databases/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'option');
-        //$this->loadViewsFrom(__DIR__ . '/../Views', 'option');
+        $this->loadViewsFrom(__DIR__ . '/../Views', 'option');
         $this->publishes([__DIR__ . '/../../config/cw_option.php' => config_path('cw_option.php')], 'cw_option');
+        //Forms Custom Components
+        Form::component('userMultiple', 'option::components.form.user_multiple', ['name', 'value' => null, 'attributes' => []]);
     }
 
     public function register()

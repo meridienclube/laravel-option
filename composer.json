@@ -15,11 +15,14 @@
         }
     ],
     "require": {
+        "laravelcollective/html": "^6",
+        "confrariaweb/laravel-select2": "dev-master",
         "confrariaweb/laravel-vendor": "dev-master"
     },
     "autoload": {
         "files": [
             "src/Helpers/option.php",
+            "src/Helpers/form_option.php",
             "src/Helpers/option_input.php"
         ],
         "psr-4": {
