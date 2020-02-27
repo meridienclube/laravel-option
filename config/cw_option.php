@@ -11,15 +11,6 @@ return [
         "textarea" => "Texto",
     ],
     'models' => [
-        'Metric',
-        'Metric::multiple',
-        'Status',
-        'Status::multiple',
-        'Task',
-        'Task::multiple',
-        'TaskType',
-        'TaskType::multiple',
         'User',
-        'User::multiple'
     ],
 ];

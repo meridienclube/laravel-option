@@ -24,7 +24,7 @@ class OptionServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Views', 'option');
         $this->publishes([__DIR__ . '/../../config/cw_option.php' => config_path('cw_option.php')], 'cw_option');
         //Forms Custom Components
-        Form::component('userMultiple', 'option::components.form.user_multiple', ['name', 'value' => null, 'attributes' => []]);
+        Form::component('user', 'option::components.form.user', ['name', 'list' => null, 'value' => null, 'attributes' => []]);
     }
 
     public function register()

@@ -1,29 +1,34 @@
 <?php
+
+use Illuminate\Support\Str;
+
 if (!function_exists('option')) {
 
+    /***
+     * @param $obj
+     * @param $option
+     * @param null $default
+     * @return \Illuminate\Support\Collection|mixed|null
+     */
     function option($obj, $option, $default = null)
     {
+        if (!is_object($obj) || !isset($option) || empty($option)) {
+            return NULL;
+        }
         $models = config('cw_option.models');
-
-        if (is_object($obj)) {
-            if ($obj->optionsValues) {
-                $optionsValues = $obj->optionsValues->where('name', $option)->first();
-
-                if ($optionsValues) {
-                    if (in_array($optionsValues->type, $models)) {
-                        $service = Str::before($optionsValues->type, '::multiple');
-                        $whereInId = isset($optionsValues->pivot->content) ? json_decode($optionsValues->pivot->content) : [];
-                        if (!is_array($whereInId)) {
-                            $default = resolve($service . 'Service')->where(['id' => $whereInId])->get();
-                        } else {
-                            $default = resolve($service . 'Service')->whereIn('id', $whereInId)->get();
-                        }
-                    } else {
-                        $default = (isset($optionsValues->pivot->content))
-                            ? $optionsValues->pivot->content
-                            : $default;
-                    }
-                }
+        $name = Str::snake($option);
+        $option = resolve('OptionService')->where(['name' => $name])->first();
+        $service = Str::ucfirst($option->type);
+        if(isset($obj->optionsValues)) {
+            $default = $obj->optionsValues->where(['name' => $name])->first()->content ?? $default;
+        }else {
+            $default = $obj->options[$name] ?? $default;
+        }
+        if(in_array($service, $models)){
+            if (is_array($default)) {
+                $default = resolve($service . 'Service')->whereIn('id', $default)->get();
+            }else {
+                $default = resolve($service . 'Service')->where(['id' => $default])->get();
             }
         }
         return (isJSON($default)) ? json_decode($default) : $default;

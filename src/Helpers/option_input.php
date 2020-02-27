@@ -1,4 +1,8 @@
 <?php
+
+/***
+ * Decrepto este aqui, sera substituido pelo form_option
+ */
 if (!function_exists('option_input')) {
 
     /**

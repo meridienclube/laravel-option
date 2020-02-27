@@ -24,6 +24,7 @@ class CreateOptionsTable extends Migration
             $table->string('placeholder');
             $table->json('value')->nullable();
             $table->boolean('required')->default(false);
+            $table->boolean('multiple')->default(false);
             $table->integer('order')->default(1);
             $table->timestamps();
             $table->softDeletes();
