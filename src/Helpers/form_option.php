@@ -2,7 +2,7 @@
 use Illuminate\Support\Str;
 
 if (!function_exists('form_option')) {
-    function form_option($option, $obj, $default = null, $attributes = [])
+    function form_option($option, $obj, $default = null, $attributes = ['class' => 'form-control'])
     {
         try {
             $option_type = is_string($option) ? $option : $option->type;
@@ -12,9 +12,10 @@ if (!function_exists('form_option')) {
             $name = $attributes['name'] ?? $option_name;
             $name = 'options[' . $name . ']';
             $name = (!$multiple) ? $name : $name . '[]';
-            $optionsValues = $obj->optionsValues ?? $obj->options;
-            $value = $optionsValues[$option_name] ?? $default;
-            $attributes = $attributes ?? ['class' => 'control-label'];
+            //$optionsValues = $obj->optionsValues ?? $obj->options;
+            //$value = $optionsValues[$option_name] ?? $default;
+            $value = option($obj, $option->name, NULL);
+
             if($multiple){
                 $attributes['multiple'] = $multiple;
             }
@@ -35,7 +36,7 @@ if (!function_exists('form_option')) {
 
             return $form($name, $value, $attributes);
         } catch (Exception $e) {
-            //echo $e->getMessage();
+            //echo $form . ' - ' . $e->getMessage();
             \Illuminate\Support\Facades\Log::error($e->getMessage());
         }
     }

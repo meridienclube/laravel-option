@@ -18,13 +18,13 @@ if (!function_exists('option')) {
         $models = config('cw_option.models');
         $name = Str::snake($option);
         $option = resolve('OptionService')->where(['name' => $name])->first();
-        $service = Str::ucfirst($option->type);
+        $service = isset($option)? Str::ucfirst($option->type) : NULL;
         if(isset($obj->optionsValues)) {
-            $default = $obj->optionsValues->where(['name' => $name])->first()->content ?? $default;
+            $default = $obj->optionsValues->where('name', $name)->first()->pivot->content ?? $default;
         }else {
             $default = $obj->options[$name] ?? $default;
         }
-        if(in_array($service, $models)){
+        if(isset($service) && in_array($service, $models)){
             if (is_array($default)) {
                 $default = resolve($service . 'Service')->whereIn('id', $default)->get();
             }else {
