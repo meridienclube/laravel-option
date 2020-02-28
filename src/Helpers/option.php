@@ -19,13 +19,15 @@ if (!function_exists('option')) {
         $name = Str::snake($option);
         $option = resolve('OptionService')->where(['name' => $name])->first();
         $service = isset($option)? Str::ucfirst($option->type) : NULL;
+
         if(isset($obj->optionsValues)) {
             $default = $obj->optionsValues->where('name', $name)->first()->pivot->content ?? $default;
         }else {
             $default = $obj->options[$name] ?? $default;
         }
 
-        if(isset($service) && in_array($service, $models)){
+
+        if(isset($default) && isset($service) && in_array($service, $models)){
             if (is_array($default)) {
                 $default = resolve($service . 'Service')->whereIn('id', $default)->get();
             }else {
