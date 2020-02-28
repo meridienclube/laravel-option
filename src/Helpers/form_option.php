@@ -15,22 +15,26 @@ if (!function_exists('form_option')) {
             //$optionsValues = $obj->optionsValues ?? $obj->options;
             //$value = $optionsValues[$option_name] ?? $default;
             $value = option($obj, $option->name, NULL);
+            $list = $option->value ?? [];
+            $service = Str::ucfirst($option_type);
 
             if($multiple){
                 $attributes['multiple'] = $multiple;
             }
 
-            if(in_array(Str::ucfirst($option_type), config('cw_option.models'))) {
-                $value = !is_array($value) ? [$value] : $value;
-                $service = Str::ucfirst($option_type) . 'Service';
-                $list = isset($value) ? resolve($service)
-                    ->whereIn('id', $value)->pluck() : [];
-                return $form($name, $list, $value, $attributes);
+            if(
+                is_object($value) &&
+                "Illuminate\Database\Eloquent\Collection" == get_class($value) &&
+                in_array(Str::ucfirst($option_type), config('cw_option.models'))
+            ){
+                $value = $value->pluck('id');
+                $list = resolve($service . 'Service')->whereIn('id', $value)->pluck()?? [];
             }
 
-            if ('select' == $option_type) {
-                $list = $option->value ?? [];
-                $value = !is_array($value) ? [$value] : $value;
+            if (
+                'select' == $option_type ||
+                in_array(Str::ucfirst($option_type), config('cw_option.models'))
+            ) {
                 return $form($name, $list, $value, $attributes);
             }
 
