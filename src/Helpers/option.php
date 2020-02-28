@@ -26,7 +26,6 @@ if (!function_exists('option')) {
             $default = $obj->options[$name] ?? $default;
         }
 
-
         if(isset($default) && isset($service) && in_array($service, $models)){
             if (is_array($default)) {
                 $default = resolve($service . 'Service')->whereIn('id', $default)->get();
