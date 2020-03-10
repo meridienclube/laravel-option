@@ -29,7 +29,6 @@ if (!function_exists('form_option')) {
             ){
                 $value = $value->pluck('id');
                 $list = resolve($service . 'Service')->whereIn('id', $value)->pluck()?? [];
-
             }
 
             if (

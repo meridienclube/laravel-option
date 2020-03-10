@@ -25,6 +25,8 @@ class OptionServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../../config/cw_option.php' => config_path('cw_option.php')], 'cw_option');
         //Forms Custom Components
         Form::component('user', 'option::components.form.user', ['name', 'list' => null, 'value' => null, 'attributes' => []]);
+        Form::component('userStatus', 'option::components.form.userStatus', ['name', 'list' => null, 'value' => null, 'attributes' => []]);
+        Form::component('taskType', 'option::components.form.taskType', ['name', 'list' => null, 'value' => null, 'attributes' => []]);
     }
 
     public function register()
