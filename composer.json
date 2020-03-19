@@ -1,5 +1,5 @@
 {
-    "name": "confrariaweb/laravel-option",
+    "name": "meridienclube/laravel-option",
     "version": "dev-master",
     "description": "Pacote de options para laravel",
     "keywords": [
@@ -16,8 +16,8 @@
     ],
     "require": {
         "laravelcollective/html": "^6",
-        "confrariaweb/laravel-select2": "dev-master",
-        "confrariaweb/laravel-vendor": "dev-master"
+        "meridienclube/laravel-select2": "dev-master",
+        "meridienclube/laravel-vendor": "dev-master"
     },
     "autoload": {
         "files": [
